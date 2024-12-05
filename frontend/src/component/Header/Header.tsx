@@ -8,12 +8,14 @@ export const Header = () => {
       <div className={styles.text}>
         <div>
           <h1>Hello, Alisa!</h1>
-          <h2>Welcome to your Reward App</h2>
+          <h2>Welcome to your Reward App.</h2>
         </div>
         <div>
           Complete your tasks and get stars.
           <br />
-          Every 10 stars you get one dollar.
+          Every <b>10</b> stars you get <b>one</b> dollar.
+          <br />
+          Every <b>Sunday</b> you get 10$.
         </div>
       </div>
       <CatSvg />
