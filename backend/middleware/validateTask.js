@@ -10,7 +10,7 @@ const validateTask = [
       return res.status(400).json({ errors: errors.array() })
     }
     next() // Proceed to the next middleware or route handler
-  },
+  }
 ]
 
 module.exports = validateTask
