@@ -7,7 +7,7 @@ async function ensureBalanceExists() {
       balance = new Balance({
         balanceInDollars: 0,
         balanceInStars: 0,
-        lastBalanceUpdate: new Date(),
+        lastBalanceUpdate: new Date()
       })
       await balance.save()
       console.log('Balance document created in MongoDB!')

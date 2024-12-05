@@ -1,0 +1,137 @@
+.list {
+    width: 100%;
+    box-shadow: 0 4px 4px 0 #383E490A, 0 8px 24px 0 #383E4914;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.newTask {
+    width: 100%;
+}
+
+.newTaskForm {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.inputs {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    align-items: center;
+}
+
+.inputWrapper {
+    display: flex;
+    gap: 4px;
+    flex-grow: 1;
+}
+
+.inputs input {
+    flex-grow: 1;
+    border: thin solid #FFBBDB;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 24px;
+}
+
+.inputs input:focus {
+    outline: none;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.star {
+    font-size: 30px;
+    transition: color 0.3s ease;
+    color: #BBC6CF;
+}
+
+.star:hover {
+    color: #FFDC77;
+}
+
+.selected {
+    color: #FFBE00; /* Color for selected stars */
+}
+
+.selected:hover {
+    color: #dcdcdc;
+}
+
+
+.addTaskButton {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: #FFBBDB;
+    border-radius: 4px;
+    border: none;
+    color: #f7f8f9;
+    min-height: 34px;
+    min-width: 34px;
+    padding: 4px;
+}
+
+.addTaskButton:hover {
+    background-color: #FF99C9;
+}
+.addTaskButton:active {
+    background-color: #FF77B7;
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+
+}
+
+.task {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 70% 20% 10%;
+    gap: 4px;
+}
+
+.doneButton {
+    font-weight: 600;
+    width: 50%;
+}
+
+.doneButton:disabled {
+    background: #BBC6CF;
+    cursor: default;
+}
+
+.deleteButton {
+    cursor: pointer;
+    background: #E3E7EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 50%;
+    border-radius: 4px;
+    border: none;
+}
+
+.buttonsWrapper {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+}

@@ -1,3 +1,21 @@
 .App {
-  text-align: center;
+  background-color: #f7f8f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  gap: 12px
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h1, h2, h3, p {
+  margin: unset;
 }

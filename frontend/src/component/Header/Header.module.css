@@ -1,0 +1,17 @@
+.banner {
+  width: 100%;
+  border-radius: 14px;
+  padding: 24px;
+  background-color: #FFBBDB;
+  display: flex;
+  gap: 16px;
+  box-shadow: 0 4px 4px 0 #383E490A, 0 8px 24px 0 #383E4914;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

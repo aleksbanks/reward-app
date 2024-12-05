@@ -1,0 +1,10 @@
+.balance {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: end;
+    padding: 8px;
+    background-color: #FFDC77;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px 0 #383E490A, 0 8px 24px 0 #383E4914;
+}
