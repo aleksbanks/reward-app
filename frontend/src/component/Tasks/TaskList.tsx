@@ -12,7 +12,11 @@ export const TaskList = () => {
   useEffect(() => {
     axios
       .get(`${API_URL}/tasks`)
-      .then((response) => setTasks(response.data))
+      .then((response) =>
+        setTasks(
+          response.data.filter((task: Task) => task.status === 'undone').sort((a: Task, b: Task) => b.stars - a.stars)
+        )
+      )
       .catch((error) => console.error('Error fetching tasks:', error))
   }, [])
 
