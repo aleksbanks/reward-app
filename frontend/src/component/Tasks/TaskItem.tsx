@@ -12,7 +12,6 @@ export const TaskItem = ({ name, stars, status, _id }: Task) => {
   const { reward, isAnimating } = useReward('rewardId', 'confetti')
   const handleClaim = async () => {
     try {
-      // API call to update task status to "done"
       const response = await axios.patch(`${API_URL}/tasks/${_id}`, { status: 'done' })
 
       if (response.status === 200) {
