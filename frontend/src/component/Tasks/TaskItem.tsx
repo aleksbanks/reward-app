@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Task } from '../../types/Task'
 import styles from './Tasks.module.css'
 import axios from 'axios'
 import { API_URL } from '../../const/url'
 import { useReward } from 'react-rewards'
+import { Modal } from '../Modals/Basic/Modal'
 
 export const TaskItem = ({ name, stars, status, _id }: Task) => {
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
+
   const { reward, isAnimating } = useReward('rewardId', 'confetti')
   const handleClaim = async () => {
     try {
@@ -32,21 +35,34 @@ export const TaskItem = ({ name, stars, status, _id }: Task) => {
   }
 
   return (
-    <div className={styles.task}>
-      <div>{name}</div>
-      <div>{Array(stars).fill('⭐').join('')}</div>
-      <div className={styles.buttonsWrapper}>
-        <button
-          id='rewardId'
-          onClick={handleClaim}
-          disabled={status === 'done' || isAnimating}
-          className={`${styles.addTaskButton} ${styles.doneButton}`}>
-          {status === 'done' ? 'Claimed' : 'Claim'}
-        </button>
-        <button onClick={handleDelete} className={styles.deleteButton}>
-          Delete
-        </button>
+    <>
+      <div className={styles.task}>
+        <div>{name}</div>
+        <div>{Array(stars).fill('⭐').join('')}</div>
+        <div className={styles.buttonsWrapper}>
+          <button
+            id='rewardId'
+            onClick={handleClaim}
+            disabled={status === 'done' || isAnimating}
+            className={`${styles.addTaskButton} ${styles.doneButton}`}>
+            {status === 'done' ? 'Claimed' : 'Claim'}
+          </button>
+          <button onClick={() => setIsConfirmModalOpen(true)} className={styles.deleteButton}>
+            Delete
+          </button>
+        </div>
       </div>
-    </div>
+      <Modal open={isConfirmModalOpen} onClose={() => setIsConfirmModalOpen(false)}>
+        <p>Are you sure you want to delete this task?</p>
+        <div className={styles.buttonsWrapper}>
+          <button className={`${styles.addTaskButton} ${styles.doneButton}`} onClick={handleDelete}>
+            Yes
+          </button>
+          <button className={styles.deleteButton} onClick={() => setIsConfirmModalOpen(false)}>
+            No
+          </button>
+        </div>
+      </Modal>
+    </>
   )
 }
