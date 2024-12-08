@@ -49,7 +49,6 @@ cron.schedule('0 0 * * 0', async () => {
 
     // Update balance values
     balance.balanceInDollars += 10
-    balance.balanceInStars = balance.balanceInDollars * 10
 
     // Save the updated balance
     await balance.save()
