@@ -22,6 +22,11 @@
     border-color: #FF77B7;
 }
 
+.button:disabled {
+    background-color: #BBC6CF;
+    cursor: not-allowed;
+}
+
 .content {
     display: flex;
     min-width: 400px;

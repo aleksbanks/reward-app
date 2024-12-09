@@ -6,9 +6,18 @@ import styles from './Tasks.module.css'
 export const AddTask = () => {
   const [name, setName] = useState<string>('')
   const [stars, setStars] = useState<number>(1)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (isLoading) return
+
+    setIsLoading(true)
+    if (!name.trim()) {
+      alert('Task name cannot be empty!')
+      return
+    }
 
     try {
       const newTask = { name, stars }
@@ -16,10 +25,13 @@ export const AddTask = () => {
       window.location.reload()
     } catch (error) {
       console.error('Error adding task:', error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const handleStarClick = (rating: number) => {
+    if (rating === stars) return // No need to update if the rating is the same
     setStars(rating)
   }
 
@@ -35,6 +47,7 @@ export const AddTask = () => {
             <input
               placeholder='Add new task'
               type='text'
+              aria-label='Task name'
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -50,6 +63,7 @@ export const AddTask = () => {
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 24 24'
                 width='24'
+                aria-pressed={starValue <= stars}
                 height='24'>
                 <path
                   d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'
@@ -59,7 +73,7 @@ export const AddTask = () => {
             ))}
           </div>
         </div>
-        <button onClick={handleSubmit} className={styles.addTaskButton} type='submit'>
+        <button disabled={isLoading} onClick={handleSubmit} className={styles.addTaskButton} type='submit'>
           +
         </button>
       </form>

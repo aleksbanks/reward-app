@@ -10,6 +10,8 @@ type FormValues = {
 }
 
 export const TransactionForm = ({ type }: Props) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const [formValues, setFormValues] = useState<FormValues>({
     amount: 0,
     description: ''
@@ -23,8 +25,23 @@ export const TransactionForm = ({ type }: Props) => {
     }))
   }
 
+  const isValid = () => {
+    if (formValues.amount <= 0) {
+      alert('Amount must be greater than 0.')
+      return false
+    }
+    if (!formValues.description.trim()) {
+      alert('Description cannot be empty.')
+      return false
+    }
+    return true
+  }
+
   const handleTransaction = async (event: React.FormEvent) => {
     event.preventDefault()
+
+    if (!isValid()) return
+    setIsLoading(true)
     try {
       const { amount, description } = formValues
 
@@ -35,7 +52,9 @@ export const TransactionForm = ({ type }: Props) => {
       })
       window.location.reload()
     } catch (error) {
-      console.error('Error buying:', error)
+      console.error('Error:', error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -43,16 +62,22 @@ export const TransactionForm = ({ type }: Props) => {
     <form className={styles.form} onSubmit={handleTransaction}>
       <label>
         Amount:
-        <input type='number' name='amount' value={formValues.amount} onChange={handleInputChange} />
+        <input min='1' type='number' name='amount' value={formValues.amount} onChange={handleInputChange} />
         💲
       </label>
       <br />
       <label>
         Description:
-        <input type='text' name='description' value={formValues.description} onChange={handleInputChange} />
+        <input
+          placeholder={type === 'buying' ? 'Enter purchase amount' : 'Enter amount to add'}
+          type='text'
+          name='description'
+          value={formValues.description}
+          onChange={handleInputChange}
+        />
       </label>
       <br />
-      <button className={styles.button} type='submit'>
+      <button disabled={isLoading} className={styles.button} type='submit'>
         {type === 'buying' ? 'Buy' : 'Add'}
       </button>
     </form>
