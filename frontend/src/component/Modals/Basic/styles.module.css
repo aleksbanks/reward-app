@@ -42,6 +42,25 @@
     align-items: center;
 }
 
+.closeButton {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #BBC6CF;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-right: -8px;
+}
+
+.closeButton:hover {
+    color: #ada6ad;
+}
+
+.closeButton:active {
+    color: #6c6d6c;
+}
+
 .content {
     display: flex;
     flex-direction: column;

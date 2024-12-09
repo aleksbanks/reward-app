@@ -1,6 +1,7 @@
 import React from 'react'
 import { CatSvg } from '../../svg/Cat'
 import styles from './Header.module.css'
+import { MakeTransaction } from '../MakeTransaction/MakeTransaction'
 
 export const Header = () => {
   return (
@@ -17,6 +18,7 @@ export const Header = () => {
           <br />
           Every <b>Sunday</b> you get 10$.
         </div>
+        <MakeTransaction />
       </div>
       <CatSvg />
     </div>
