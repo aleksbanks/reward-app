@@ -3,6 +3,7 @@ import { createContainer } from '../../../utils/createContainer'
 import { Portal } from './Portal'
 
 import styles from './styles.module.css'
+import { CancelIcon } from '../../../svg/Cancel'
 
 export type Props = {
   open: boolean
@@ -59,6 +60,9 @@ export const Modal = ({ onClose, open, children, header, footer, className }: Pr
           <div className={`${styles.contentWrapper} ${Boolean(footer) ? styles.withFooter : ''}`}>
             <div className={styles.header}>
               <div>{header}</div>
+              <button className={styles.closeButton} onClick={onClose}>
+                <CancelIcon />
+              </button>
             </div>
             <div className={styles.content}>{children}</div>
           </div>

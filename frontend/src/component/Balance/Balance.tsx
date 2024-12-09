@@ -8,7 +8,6 @@ export const BalanceItem = () => {
   const [balance, setBalance] = useState<Balance>({ balanceInDollars: 0, balanceInStars: 0 })
 
   useEffect(() => {
-    // Fetch balance from backend
     axios
       .get(`${API_URL}/balance`)
       .then((response) => setBalance(response.data))
