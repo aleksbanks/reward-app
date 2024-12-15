@@ -9,6 +9,7 @@ const cron = require('node-cron')
 const ensureBalanceExists = require('./utils/ensureBalanceExists')
 
 const Balance = require('./models/Balance')
+const Task = require('./models/Task')
 
 require('dotenv').config()
 
@@ -55,6 +56,32 @@ cron.schedule('0 0 * * 0', async () => {
     console.log('Balance updated with 10 bucks!')
   } catch (error) {
     console.error('Error updating balance:', error)
+  }
+})
+
+// Every Day at 00:00 (midnight)
+// Schedule the daily tasks update (if it was completed)
+cron.schedule('0 0 * * *', async () => {
+  try {
+    const task = await Task.findOne({
+      status: 'undone',
+      name: { $regex: 'заправить кровать', $options: 'i' } // make bed in russian in any case
+    })
+
+    // If the task is not found, create a new task with the name 'Заправить кровать' and status 'undone'
+    if (!task) {
+      const newTask = new Task({
+        name: 'Заправить кровать',
+        status: 'undone',
+        stars: 1
+      })
+      await newTask.save()
+      console.log('Task created!')
+    }
+    // If the task is found we don't do anything
+    console.log('Task already exists.')
+  } catch (error) {
+    console.error('Error updating tasks', error)
   }
 })
 
