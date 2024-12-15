@@ -1,5 +1,6 @@
 .list {
-    width: 100%;
+    width: calc(100% - 50px);
+    width: -webkit-calc(100% - 50px);
     box-shadow: 0 4px 4px 0 #383E490A, 0 8px 24px 0 #383E4914;
     border-radius: 8px;
     padding: 24px;

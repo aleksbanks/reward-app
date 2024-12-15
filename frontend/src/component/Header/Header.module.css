@@ -1,5 +1,6 @@
 .banner {
-  width: 100%;
+  width: calc(100% - 50px);
+  width: -webkit-calc(100% - 50px);
   border-radius: 14px;
   padding: 24px;
   background-color: #FFBBDB;
